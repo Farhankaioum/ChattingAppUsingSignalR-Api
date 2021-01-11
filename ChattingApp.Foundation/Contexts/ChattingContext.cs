@@ -4,8 +4,8 @@ namespace ChattingApp.Foundation.Contexts
 {
     public class ChattingContext : DbContext
     {
-        private string _connectionString;
-        private string _migrationAssemblyName;
+        private readonly string _connectionString;
+        private readonly string _migrationAssemblyName;
 
         public ChattingContext(string connectionString, string migrationAssemblyName)
         {

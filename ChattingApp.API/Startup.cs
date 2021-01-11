@@ -1,37 +1,46 @@
+using Autofac;
+using ChattingApp.Foundation;
 using ChattingApp.Foundation.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ChattingApp.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(env.ContentRootPath)
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+               .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+               .AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; private set; }
+
+        public static ILifetimeScope AutofacContainer { get; private set; }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var connAndMig = GetConnectionStringAndMigrationAssembly();
+
+            builder.RegisterModule(new ApiModule(connAndMig.connectionString, connAndMig.migrationAssembly));
+            builder.RegisterModule(new FoundationModule(connAndMig.connectionString, connAndMig.migrationAssembly));
+
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionStringName = "DefaultConnection";
-            var connectionString = Configuration.GetConnectionString(connectionStringName);
-            var migrationAssemblyName = typeof(Startup).Assembly.FullName;
+            var connAndMig = GetConnectionStringAndMigrationAssembly();
 
             services.AddDbContext<ChattingContext>(options =>
-                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+                options.UseSqlServer(connAndMig.connectionString, b => b.MigrationsAssembly(connAndMig.migrationAssembly)));
 
             services.AddControllers();
         }
@@ -54,6 +63,21 @@ namespace ChattingApp.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private (string connectionString, string migrationAssembly) GetConnectionStringAndMigrationAssembly()
+        {
+            var connectionStringName = GetConnectionStringName();
+            var connectionString = Configuration.GetConnectionString(connectionStringName);
+            var migrationAssemblyName = typeof(Startup).Assembly.FullName;
+
+            return (connectionString, migrationAssemblyName);
+        }
+
+        private string GetConnectionStringName()
+        {
+            var connectionStringName = "DefaultConnection";
+            return connectionStringName;
         }
     }
 }
