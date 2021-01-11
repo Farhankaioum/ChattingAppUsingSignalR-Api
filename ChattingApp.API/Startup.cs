@@ -1,4 +1,5 @@
 using Autofac;
+using AutoMapper;
 using ChattingApp.Foundation;
 using ChattingApp.Foundation.Contexts;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace ChattingApp.API
 {
@@ -41,6 +43,8 @@ namespace ChattingApp.API
 
             services.AddDbContext<ChattingContext>(options =>
                 options.UseSqlServer(connAndMig.connectionString, b => b.MigrationsAssembly(connAndMig.migrationAssembly)));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddControllers();
         }
