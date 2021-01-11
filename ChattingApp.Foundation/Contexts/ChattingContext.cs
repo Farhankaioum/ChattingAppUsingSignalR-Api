@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ChattingApp.Foundation.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChattingApp.Foundation.Contexts
 {
@@ -29,5 +30,7 @@ namespace ChattingApp.Foundation.Contexts
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }
