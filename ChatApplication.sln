@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.API", "Chatting
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.Data", "ChattingApp.Data\ChattingApp.Data.csproj", "{179EC064-7732-4053-8B29-10843DCCFCE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.Foundation", "ChattingApp.Foundation\ChattingApp.Foundation.csproj", "{02161197-4855-49E1-95D5-E3FAB873903E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{179EC064-7732-4053-8B29-10843DCCFCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{179EC064-7732-4053-8B29-10843DCCFCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{179EC064-7732-4053-8B29-10843DCCFCE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02161197-4855-49E1-95D5-E3FAB873903E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02161197-4855-49E1-95D5-E3FAB873903E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02161197-4855-49E1-95D5-E3FAB873903E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02161197-4855-49E1-95D5-E3FAB873903E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
