@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using ChattingApp.Foundation.Contexts;
+using ChattingApp.Foundation.Helpers;
 using ChattingApp.Foundation.Repositories;
 using ChattingApp.Foundation.Services;
 using ChattingApp.Foundation.UnitOfWorks;
@@ -18,6 +20,11 @@ namespace ChattingApp.Foundation
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ChattingContext>()
+                .WithParameter("connectionString", _connectionString)
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
             builder.RegisterType<ChattingUnitOfWork>().As<IChattingUnitOfWork>()
                 .InstancePerLifetimeScope();
 
@@ -32,6 +39,9 @@ namespace ChattingApp.Foundation
 
             builder.RegisterType<MessageService>().As<IMessageService>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<Validator>().As<IValidator>()
+                .SingleInstance();
 
             base.Load(builder);
         }

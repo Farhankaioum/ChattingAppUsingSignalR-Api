@@ -24,10 +24,12 @@ namespace ChattingApp.API.Controllers
 
         public AuthController(IUserService userService,
                 ILogger<AuthController> logger,
+                IConfiguration configuration,
                 IMapper mapper)
         {
             _userService = userService;
             _logger = logger;
+            _configuration = configuration;
             _mapper = mapper;
         }
 
