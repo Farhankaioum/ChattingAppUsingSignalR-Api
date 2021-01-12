@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using ChattingApp.Foundation.Repositories;
+using ChattingApp.Foundation.Services;
+using ChattingApp.Foundation.UnitOfWorks;
 
 namespace ChattingApp.Foundation
 {
@@ -15,6 +18,21 @@ namespace ChattingApp.Foundation
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<ChattingUnitOfWork>().As<IChattingUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<UserRepository>().As<IUserRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<UserService>().As<IUserService>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<MessageService>().As<IMessageService>()
+                .InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

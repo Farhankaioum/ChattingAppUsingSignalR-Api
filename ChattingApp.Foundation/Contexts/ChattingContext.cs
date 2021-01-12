@@ -28,9 +28,23 @@ namespace ChattingApp.Foundation.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Message>()
+                .HasOne(s => s.Sender)
+                .WithMany(r => r.MessagesReceive)
+                .HasForeignKey(s => s.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Message>()
+                .HasOne(r => r.Recipient)
+                .WithMany(s => s.MessagesSent)
+                .HasForeignKey(r => r.RecipientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(builder);
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
     }
 }

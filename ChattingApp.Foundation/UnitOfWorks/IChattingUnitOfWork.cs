@@ -6,5 +6,6 @@ namespace ChattingApp.Foundation.UnitOfWorks
     public interface IChattingUnitOfWork : IUnitOfWork
     {
         IUserRepository UserRepository { get; set; }
+        IMessageRepository MessageRepository { get; set; }
     }
 }

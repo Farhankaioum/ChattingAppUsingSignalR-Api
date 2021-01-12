@@ -7,12 +7,16 @@ namespace ChattingApp.Foundation.UnitOfWorks
     public class ChattingUnitOfWork : UnitOfWork, IChattingUnitOfWork
     {
         public ChattingUnitOfWork(ChattingContext context,
-                IUserRepository userRepository)
+                IUserRepository userRepository,
+                IMessageRepository messageRepository)
             : base(context)
         {
             UserRepository = userRepository;
+            MessageRepository = messageRepository;
         }
 
         public IUserRepository UserRepository { get; set; }
+
+        public IMessageRepository MessageRepository { get; set; }
     }
 }
