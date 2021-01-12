@@ -8,6 +8,7 @@ namespace ChattingApp.Foundation.Services
     {
         void AddUser(User user);
         User GetUserById(Guid id);
+        User GetUserByEmail(string email);
         IList<User> GetAllUser();
     }
 }

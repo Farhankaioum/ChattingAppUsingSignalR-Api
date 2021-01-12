@@ -7,6 +7,6 @@ namespace ChattingApp.Foundation.Repositories
 {
     public interface IUserRepository : IRepository<User, Guid, ChattingContext>
     {
-
+        User GetUserByEmail(string email);
     }
 }

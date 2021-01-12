@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ChattingApp.API.Dtos;
+using ChattingApp.Foundation.Entities;
 
 namespace ChattingApp.API.Helpers
 {
@@ -6,7 +8,7 @@ namespace ChattingApp.API.Helpers
     {
         public AutoMapperProfiles()
         {
-
+            CreateMap<UserForRegisterDto, User>();
         }
     }
 }

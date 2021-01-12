@@ -2,6 +2,7 @@
 using ChattingApp.Foundation.Contexts;
 using ChattingApp.Foundation.Entities;
 using System;
+using System.Linq;
 
 namespace ChattingApp.Foundation.Repositories
 {
@@ -11,6 +12,11 @@ namespace ChattingApp.Foundation.Repositories
             : base(context)
         {
 
+        }
+
+        public User GetUserByEmail(string email)
+        {
+           return _dbContext.Users.FirstOrDefault(u => u.Email == email);
         }
     }
 }

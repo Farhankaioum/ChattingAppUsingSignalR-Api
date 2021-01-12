@@ -49,5 +49,14 @@ namespace ChattingApp.Foundation.Services
 
             return existingUser;
         }
+
+        public User GetUserByEmail(string email)
+        {
+           var existingUser =  _chattingUnitOfWork.UserRepository.GetUserByEmail(email);
+            if (existingUser == null)
+                throw new EmptyException($"User not found with this email {email}");
+
+            return existingUser;
+        }
     }
 }
