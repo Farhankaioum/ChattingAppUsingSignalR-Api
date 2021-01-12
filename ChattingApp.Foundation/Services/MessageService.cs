@@ -68,5 +68,16 @@ namespace ChattingApp.Foundation.Services
         {
             return _chattingUnitOfWork.MessageRepository.GetMessageThread(userId, recipientId).ToList();
         }
+
+        public void MarkMessageAsRead(long msgId)
+        {
+            var existingMsg = _chattingUnitOfWork.MessageRepository.GetById(msgId);
+            if (existingMsg == null)
+                throw new InValidException("message not found!");
+
+            existingMsg.IsRead = true;
+            existingMsg.DateRead = DateTime.Now;
+            _chattingUnitOfWork.Save();
+        }
     }
 }

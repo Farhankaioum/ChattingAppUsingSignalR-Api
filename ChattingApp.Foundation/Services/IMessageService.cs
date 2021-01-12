@@ -12,5 +12,6 @@ namespace ChattingApp.Foundation.Services
         Message GetMessage(long id);
         IList<Message> GetMessagesForUser(MessageParams messageParams);
         IList<Message> GetMessageThread(Guid userId, Guid recipientId);
+        void MarkMessageAsRead(long msgId);
     }
 }
