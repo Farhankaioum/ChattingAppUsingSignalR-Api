@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
+using System.IO;
 
 namespace ChattingApp.API
 {
@@ -14,10 +15,8 @@ namespace ChattingApp.API
                       .MinimumLevel.Debug()
                       .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
                       .Enrich.FromLogContext()
-                      .WriteTo.File("Logs//chattingAppApi-log-{Date}.log")
-                      .WriteTo.Console()
+                      .WriteTo.File(Path.Combine("Logs", "chatting-log-.log"), rollingInterval: RollingInterval.Day)
                       .CreateLogger();
-
             try
             {
                 Log.Information("Application Starting up");

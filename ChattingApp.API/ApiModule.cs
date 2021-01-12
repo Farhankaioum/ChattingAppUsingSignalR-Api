@@ -15,8 +15,6 @@ namespace ChattingApp.API
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Test>().As<ITest>()
-                .SingleInstance();
 
             base.Load(builder);
         }
