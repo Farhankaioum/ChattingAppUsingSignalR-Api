@@ -9,6 +9,7 @@ namespace ChattingApp.API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<User, UserForListDto>();
 
             CreateMap<MessageToReturnDto, Message>()
                 .ReverseMap();
