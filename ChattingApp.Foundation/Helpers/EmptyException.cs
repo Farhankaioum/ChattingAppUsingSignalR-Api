@@ -3,7 +3,7 @@
 namespace ChattingApp.Foundation.Helpers
 {
     [Serializable]
-    internal class EmptyException : Exception
+    public class EmptyException : Exception
     {
         public EmptyException()
         {

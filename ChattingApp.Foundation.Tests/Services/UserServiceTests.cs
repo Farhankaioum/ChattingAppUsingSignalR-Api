@@ -33,6 +33,29 @@ namespace ChattingApp.Foundation.Tests.Services
             _userService = _mock.Create<UserService>();
         }
 
+        [Test]
+        public void AddUser_FirstNameEmpty_ThrowEmptyException()
+        {
+            // Arrange
+            var user = new User
+            {
+                LastName = "Yyy",
+                Email = "xy@gmail.com"
+            };
+
+            _chattingUnitOfWorkMock.Setup(x => x.UserRepository)
+                .Returns(_userRepositoryMock.Object);
+
+            //_validatorMock.Setup(x => x.IsValidString(user.FirstName))
+            //    .Returns(false);
+
+            // Act
+            //_userService.AddUser(user);
+
+            // Assert
+            Assert.That(() => _userService.AddUser(user), Throws.Exception.TypeOf<EmptyException>());
+        }
+
         [Test, Category("Unit Test")]
         public void AddUser_UserProvided_RegisterUser()
         {   
