@@ -7,6 +7,7 @@ using ChattingApp.Foundation.UnitOfWorks;
 using Moq;
 using NUnit.Framework;
 using Shouldly;
+using System;
 
 namespace ChattingApp.Foundation.Tests.Services
 {
@@ -16,6 +17,7 @@ namespace ChattingApp.Foundation.Tests.Services
         private Mock<IChattingUnitOfWork> _chattingUnitOfWorkMock;
         private Mock<IUserRepository> _userRepositoryMock;
         private Mock<IValidator> _validatorMock;
+        private Mock<IUserService> _userServiceMock;
         private IUserService _userService;
 
         [OneTimeSetUp]
@@ -30,10 +32,11 @@ namespace ChattingApp.Foundation.Tests.Services
             _chattingUnitOfWorkMock = _mock.Mock<IChattingUnitOfWork>();
             _userRepositoryMock = _mock.Mock<IUserRepository>();
             _validatorMock = _mock.Mock<IValidator>();
+            _userServiceMock = _mock.Mock<IUserService>();
             _userService = _mock.Create<UserService>();
         }
 
-        [Test]
+        [Test, Category("Unit Test")]
         public void AddUser_FirstNameEmpty_ThrowEmptyException()
         {
             // Arrange
@@ -90,6 +93,35 @@ namespace ChattingApp.Foundation.Tests.Services
                 () => _chattingUnitOfWorkMock.VerifyAll(),
                 () => _userRepositoryMock.VerifyAll()
                 );
+        }
+
+        [Test, Category("Unit Test")]
+        public void GetUserById_NonExistingId_ThrowNullReferenceException()
+        {
+            // Arrange
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                FirstName = "xyx",
+                LastName = "Yyy",
+                Email = "xy@gmail.com"
+            };
+
+            _chattingUnitOfWorkMock.Setup(x => x.UserRepository)
+                .Returns(_userRepositoryMock.Object);
+
+            //_userServiceMock.Setup(x => x.GetUserById(user.Id))
+            //    .Throws(new NullReferenceException());
+
+            // Act
+            //var result = _userService.GetUserById(user.Id);
+
+            // Assert
+            //Assert.That(() => _userService.GetUserById(user.Id), Throws.Exception.TypeOf<NullReferenceException>());
+            Should.Throw<NullReferenceException>(() => {
+                _userService.GetUserById(user.Id);
+            });
+
         }
 
         [TearDown]
