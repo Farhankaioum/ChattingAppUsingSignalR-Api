@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.API", "ChattingApp.API\ChattingApp.API.csproj", "{7F51A500-1E7B-4CC3-9E82-6C49AC88BDEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattingApp.API", "ChattingApp.API\ChattingApp.API.csproj", "{7F51A500-1E7B-4CC3-9E82-6C49AC88BDEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.Data", "ChattingApp.Data\ChattingApp.Data.csproj", "{179EC064-7732-4053-8B29-10843DCCFCE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattingApp.Data", "ChattingApp.Data\ChattingApp.Data.csproj", "{179EC064-7732-4053-8B29-10843DCCFCE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.Foundation", "ChattingApp.Foundation\ChattingApp.Foundation.csproj", "{02161197-4855-49E1-95D5-E3FAB873903E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChattingApp.Foundation", "ChattingApp.Foundation\ChattingApp.Foundation.csproj", "{02161197-4855-49E1-95D5-E3FAB873903E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChattingApp.Foundation.Tests", "ChattingApp.Foundation.Tests\ChattingApp.Foundation.Tests.csproj", "{B6E7BA66-3E40-4BCF-99D2-41DA3DCAA246}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{02161197-4855-49E1-95D5-E3FAB873903E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02161197-4855-49E1-95D5-E3FAB873903E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02161197-4855-49E1-95D5-E3FAB873903E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E7BA66-3E40-4BCF-99D2-41DA3DCAA246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E7BA66-3E40-4BCF-99D2-41DA3DCAA246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E7BA66-3E40-4BCF-99D2-41DA3DCAA246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E7BA66-3E40-4BCF-99D2-41DA3DCAA246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
